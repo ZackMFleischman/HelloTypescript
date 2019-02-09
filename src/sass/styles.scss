@@ -1,0 +1,17 @@
+@import "colors";
+
+$main-font: verdana, sans-serif;
+
+body {
+    font: $main-font;
+    margin: 10;
+    h1,
+    h2 {
+        color: $color-dark;
+    }
+}
+
+#idMain {
+    background-color: $color-light;
+}
+

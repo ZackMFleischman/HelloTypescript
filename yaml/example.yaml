@@ -1,0 +1,13 @@
+# This data maps to the interface `IWebsiteData`
+title: Hello Typescript!!!
+users:
+  - name: Zack
+    age: 31
+    email: zackmfleischman@gmail.com
+    favoriteAnimal: Tiger
+    picture: https://avatars2.githubusercontent.com/u/4298857?s=400&u=c94625644f2d58c54ede9923c1713e1c77f0174e&v=4
+  - name: Greg
+    age: 85 
+    email: greg@gmail.com
+    favoriteAnimal: Giant Squid
+    picture: https://mygoodplanet.com/wp-content/uploads/2017/11/colossal-squid-blue-whale.jpg
