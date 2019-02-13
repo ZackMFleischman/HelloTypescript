@@ -36,6 +36,3 @@ function setupWithData(websiteData: IWebsiteData) {
 const fetcher = new Fetcher();
 fetcher.fetchYaml<IWebsiteData>(Environment.configServer() + "yaml/example.yaml")
     .then(setupWithData);
-
-
-
