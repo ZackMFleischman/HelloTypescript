@@ -28,6 +28,7 @@ function setupWithData(websiteData: IWebsiteData) {
         const usersDiv: HTMLElement = document.createElement("div");
         usersDiv.innerText = "Users:";
         mainDiv.appendChild(usersDiv);
+
     } else {
         console.log(`Couldn't find the main div!`);
     }
