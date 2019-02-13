@@ -31,7 +31,6 @@ function setupWithData(websiteData: IWebsiteData) {
         usersDiv.appendChild(getUsersHTMLElement(websiteData.users));
 
         mainDiv.appendChild(usersDiv);
-
     } else {
         console.log(`Couldn't find the main div!`);
     }
