@@ -35,11 +35,6 @@ function setupWithData(websiteData: IWebsiteData) {
     }
 }
 
-<<<<<<< Updated upstream
-const fetcher = new Fetcher();
-fetcher.fetchYaml<IWebsiteData>(Environment.configServer() + "yaml/example.yaml")
-    .then(setupWithData);
-=======
 function getUsersHTMLElement(users: IUser[]): HTMLElement {
     const usersUL: HTMLOListElement = document.createElement("ol");
 
@@ -157,5 +152,3 @@ function playTicTacToe() {
 }
 
 playTicTacToe();
-
->>>>>>> Stashed changes
