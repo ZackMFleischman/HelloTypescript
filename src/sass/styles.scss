@@ -1,6 +1,7 @@
 @import "colors";
 
 $main-font: verdana, sans-serif;
+$cell-size: 150px;
 
 body {
     font: $main-font;
@@ -9,13 +10,64 @@ body {
     h2 {
         color: $color-dark;
     }
-}
-
-#idMain {
     background-color: $color-light;
 }
 
-#idUsers {
-    background-color: purple;
+#idMain {
+    display:flex;
+    flex-direction: column;
+
+    align-items: center;
 }
 
+#ticTacToeBoard {
+    margin: 25px;
+}
+
+.row {
+    display: flex;
+}
+
+#row2_column1 {
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+#row2_column3 {
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+#row1_column2 {
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#row2_column2 {
+    border: 5px solid black;
+}
+
+#row3_column2 {
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}
+
+.cell {
+    font-size: 8em;
+    width: $cell-size;
+    height: $cell-size;
+
+    // Center everything in the cell
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    &:hover {
+        background-color: whitesmoke; // Changes the background color of a cell when you hover over it.
+    }
+}
+
+#label {
+    font-size: 2em;
+}

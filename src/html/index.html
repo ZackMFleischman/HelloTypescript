@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!--include the following meta tag to make chrome dev tools recognize media queries: -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
-        <!--This is how you pull in new fonts from Google Fonts and use them. -->
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Playfair Display', serif;
-            }
-        </style>
+<head>
+    <!--include the following meta tag to make chrome dev tools recognize media queries: -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
-        <title>Hello Typescript!</title>
-    </head>
+    <!--This is how you pull in new fonts from Google Fonts and use them. -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
 
-    <body>
-        <div id="idMain">Hello Typescript</div>
-    </body>
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+    <div id="idMain">
+        <div id="ticTacToeBoard">
+            <div id="row1" class="row">
+                <div id="row1_column1" class="cell"></div>
+                <div id="row1_column2" class="cell"></div>
+                <div id="row1_column3" class="cell"></div>
+            </div>
+
+            <div id="row2" class="row">
+                <div id="row2_column1" class="cell"></div>
+                <div id="row2_column2" class="cell"></div>
+                <div id="row2_column3" class="cell"></div>
+            </div>
+
+            <div id="row3" class="row">
+                <div id="row3_column1" class="cell"></div>
+                <div id="row3_column2" class="cell"></div>
+                <div id="row3_column3" class="cell"></div>
+            </div>
+        </div>
+
+        <div id="label">X goes first</div>
+</body>
+
 </html>
