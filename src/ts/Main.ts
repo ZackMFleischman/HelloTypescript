@@ -23,6 +23,9 @@ import { ENGINE_METHOD_PKEY_ASN1_METHS } from "constants";
 const x: string = "x";
 const o: string = "o";
 const _: string = " ";
+let counterx = 0;
+let xarry: number[] = [];
+let oarry: number[] = [];
 
 // Declare GameState data structure
 interface GameState {
@@ -90,6 +93,127 @@ function playerMoved(cellNumber: number) {
     updateGameStateWithPlayerMove(cellNumber);
     updateGameVisuals();
 
+
+if (xarry[0] ==0 && xarry[1] ==1 && xarry[2] == 2)
+{
+    isGameOver();
+    console.log("X win");
+}
+
+    if ( counterx % 2 == 0 )
+    {
+        xarry.push(cellNumber);
+        console.log("X array index is " + xarry );
+
+    nextPlayersTurn : x;
+    switch(cellNumber) {
+        case 0:
+          ticTacToeCells[0].onclick;
+         ticTacToeCells[0].innerText = x;
+         counterx ++;
+         console.log("this is first click which is index 0 " + cellNumber);
+          break;
+        case 1:
+         ticTacToeCells[1].onclick;
+         ticTacToeCells[1].innerText = x;
+         counterx ++;
+         console.log("this is second click which is index 1 " + cellNumber);
+          break;
+        case 2:
+         ticTacToeCells[2].onclick;
+         ticTacToeCells[2].innerText = x;
+         counterx ++;
+          break;
+        case 3:
+          ticTacToeCells[3].onclick;
+         ticTacToeCells[3].innerText = x;
+         counterx ++;
+          break;
+        case 4:
+         ticTacToeCells[4].onclick;
+         ticTacToeCells[4].innerText = x;
+         counterx ++;
+          break;
+        case 5:
+         ticTacToeCells[5].onclick;
+         ticTacToeCells[5].innerText = x;
+         counterx ++;
+          break;
+        case 6:
+         ticTacToeCells[6].onclick;
+        ticTacToeCells[6].innerText = x;
+        counterx ++;
+        break;
+        case 7:
+         ticTacToeCells[7].onclick;
+        ticTacToeCells[7].innerText = x;
+        counterx ++;
+        break;
+        case 8:
+         ticTacToeCells[8].onclick;
+        ticTacToeCells[8].innerText = x;
+        counterx ++;
+        break;
+      }
+   
+    }
+      else
+      {
+        oarry.push(cellNumber);
+        console.log("O array index is " + oarry );
+        nextPlayersTurn : o;
+        switch(cellNumber) 
+        {
+            case 0:
+              ticTacToeCells[0].onclick;
+             ticTacToeCells[0].innerText = o;
+             counterx ++;
+    
+              break;
+            case 1:
+             ticTacToeCells[1].onclick;
+             ticTacToeCells[1].innerText = o;
+             counterx ++;
+              break;
+            case 2:
+             ticTacToeCells[2].onclick;
+             ticTacToeCells[2].innerText = o;
+             counterx ++;
+              break;
+            case 3:
+              ticTacToeCells[3].onclick;
+             ticTacToeCells[3].innerText = o;
+             counterx ++;
+              break;
+            case 4:
+             ticTacToeCells[4].onclick;
+             ticTacToeCells[4].innerText = o;
+             counterx ++;
+              break;
+            case 5:
+             ticTacToeCells[5].onclick;
+             ticTacToeCells[5].innerText = o;
+             counterx ++;
+              break;
+            case 6:
+             ticTacToeCells[6].onclick;
+            ticTacToeCells[6].innerText = o;
+            counterx ++;
+            break;
+            case 7:
+             ticTacToeCells[7].onclick;
+            ticTacToeCells[7].innerText = o;
+            counterx ++;
+            break;
+            case 8:
+             ticTacToeCells[8].onclick;
+            ticTacToeCells[8].innerText = o;
+            counterx ++;
+            break;
+          }
+          
+      }
+     
     // [Step 2c]
     if (isGameOver())
         endGame();
@@ -116,7 +240,11 @@ function isGameOver(): boolean {
     // HINT: The game is over if either of these are true.
     // 1. Rows, Columns, or Diagonals are all one player
     // 2. The board is full (tie)
-    return false;
+    //
+    return true;
+
+
+  //  return false;
 }
 
 function endGame(): void {
