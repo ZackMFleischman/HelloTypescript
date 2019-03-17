@@ -26,6 +26,7 @@ const _: string = " ";
 let counterx = 0;
 let xarry: number[] = [];
 let oarry: number[] = [];
+let whowin : string = "" ; 
 
 // Declare GameState data structure
 interface GameState {
@@ -52,6 +53,9 @@ let label: HTMLDivElement = document.getElementById("label")! as HTMLDivElement;
 function initializeGame() {
     gameState = getInitialGameState();
     initializeGameVisuals();
+    xarry = [];
+    oarry = []; 
+    counterx = 0;
 }
 
 function getInitialGameState(): GameState {
@@ -93,6 +97,20 @@ function playerMoved(cellNumber: number) {
     updateGameStateWithPlayerMove(cellNumber);
     updateGameVisuals();
 
+    ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
+    counterx ++;
+    
+/*
+   if ( counterx % 2 == 0 )    {
+    ticTacToeCells[cellNumber].innerText = x;
+counterx ++;
+}
+    else 
+    {
+        ticTacToeCells[cellNumber].innerText = o; 
+        counterx ++;
+    }
+
 
 if (xarry[0] ==0 && xarry[1] ==1 && xarry[2] == 2)
 {
@@ -100,119 +118,7 @@ if (xarry[0] ==0 && xarry[1] ==1 && xarry[2] == 2)
     console.log("X win");
 }
 
-    if ( counterx % 2 == 0 )
-    {
-        xarry.push(cellNumber);
-        console.log("X array index is " + xarry );
-
-    nextPlayersTurn : x;
-    switch(cellNumber) {
-        case 0:
-          ticTacToeCells[0].onclick;
-         ticTacToeCells[0].innerText = x;
-         counterx ++;
-         console.log("this is first click which is index 0 " + cellNumber);
-          break;
-        case 1:
-         ticTacToeCells[1].onclick;
-         ticTacToeCells[1].innerText = x;
-         counterx ++;
-         console.log("this is second click which is index 1 " + cellNumber);
-          break;
-        case 2:
-         ticTacToeCells[2].onclick;
-         ticTacToeCells[2].innerText = x;
-         counterx ++;
-          break;
-        case 3:
-          ticTacToeCells[3].onclick;
-         ticTacToeCells[3].innerText = x;
-         counterx ++;
-          break;
-        case 4:
-         ticTacToeCells[4].onclick;
-         ticTacToeCells[4].innerText = x;
-         counterx ++;
-          break;
-        case 5:
-         ticTacToeCells[5].onclick;
-         ticTacToeCells[5].innerText = x;
-         counterx ++;
-          break;
-        case 6:
-         ticTacToeCells[6].onclick;
-        ticTacToeCells[6].innerText = x;
-        counterx ++;
-        break;
-        case 7:
-         ticTacToeCells[7].onclick;
-        ticTacToeCells[7].innerText = x;
-        counterx ++;
-        break;
-        case 8:
-         ticTacToeCells[8].onclick;
-        ticTacToeCells[8].innerText = x;
-        counterx ++;
-        break;
-      }
-   
-    }
-      else
-      {
-        oarry.push(cellNumber);
-        console.log("O array index is " + oarry );
-        nextPlayersTurn : o;
-        switch(cellNumber) 
-        {
-            case 0:
-              ticTacToeCells[0].onclick;
-             ticTacToeCells[0].innerText = o;
-             counterx ++;
-    
-              break;
-            case 1:
-             ticTacToeCells[1].onclick;
-             ticTacToeCells[1].innerText = o;
-             counterx ++;
-              break;
-            case 2:
-             ticTacToeCells[2].onclick;
-             ticTacToeCells[2].innerText = o;
-             counterx ++;
-              break;
-            case 3:
-              ticTacToeCells[3].onclick;
-             ticTacToeCells[3].innerText = o;
-             counterx ++;
-              break;
-            case 4:
-             ticTacToeCells[4].onclick;
-             ticTacToeCells[4].innerText = o;
-             counterx ++;
-              break;
-            case 5:
-             ticTacToeCells[5].onclick;
-             ticTacToeCells[5].innerText = o;
-             counterx ++;
-              break;
-            case 6:
-             ticTacToeCells[6].onclick;
-            ticTacToeCells[6].innerText = o;
-            counterx ++;
-            break;
-            case 7:
-             ticTacToeCells[7].onclick;
-            ticTacToeCells[7].innerText = o;
-            counterx ++;
-            break;
-            case 8:
-             ticTacToeCells[8].onclick;
-            ticTacToeCells[8].innerText = o;
-            counterx ++;
-            break;
-          }
-          
-      }
+*/
      
     // [Step 2c]
     if (isGameOver())
@@ -241,7 +147,16 @@ function isGameOver(): boolean {
     // 1. Rows, Columns, or Diagonals are all one player
     // 2. The board is full (tie)
     //
-    return true;
+    if (xarry[0] == 0 && xarry[1] == 1 && xarry[2] == 2)
+    {
+        whowin = " X won " ;
+        return true;
+
+        
+    }
+    else 
+    return false;
+    
 
 
   //  return false;
@@ -250,6 +165,10 @@ function isGameOver(): boolean {
 function endGame(): void {
     // TODO: Inform the players the game is over and who won. 
     //       Bonus points if you restart for the next game! 
+   
+    initializeGame();
+    alert(whowin);
+
 }
 
 initializeGame();
