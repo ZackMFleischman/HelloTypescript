@@ -3,8 +3,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // Webpack Server Url
-const webpackDevServerIP = "0.0.0.0";
-const webpackDevServerPort = 9001;
+const webpackDevServerIP = "127.0.0.1";
+const webpackDevServerPort = 9003;
 const webpackDevServerUrl = buildUrl(webpackDevServerIP, webpackDevServerPort);
 
 // Production Server IP/Domain
