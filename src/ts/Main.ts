@@ -97,32 +97,43 @@ function playerMoved(cellNumber: number) {
     updateGameStateWithPlayerMove(cellNumber);
     updateGameVisuals();
 
-    ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
-    counterx ++;
-    
-/*
+   // ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
+    //counterx ++;
+ 
+
    if ( counterx % 2 == 0 )    {
     ticTacToeCells[cellNumber].innerText = x;
-counterx ++;
-}
-    else 
+    console.log(" we added X");
+    xarry.push(cellNumber);
+    console.log("we added X to the Xarry at index is " + xarry );
+         counterx ++;
+         whowin = x;
+    }
+    else
     {
         ticTacToeCells[cellNumber].innerText = o; 
+        console.log(" we added o");
+        oarry.push(cellNumber);
+    console.log("we added O to the Xarry at index is " + oarry );
         counterx ++;
+        whowin =o;
+       
     }
 
-
-if (xarry[0] ==0 && xarry[1] ==1 && xarry[2] == 2)
-{
-    isGameOver();
-    console.log("X win");
-}
-
-*/
-     
     // [Step 2c]
     if (isGameOver())
+
+    
+    {
+
+    console.log("we are in the game over check");
         endGame();
+    }
+
+    else 
+    {
+        console.log("no one win try again");
+    }
 }
 
 // [Step 2a]
@@ -138,36 +149,57 @@ function updateGameVisuals() {
     //       Hint: use `innerText` on a div.
 }
 
+function xofuntion(playerarray : number [] ): boolean {
+    if (
+       
+        (playerarray.includes(0) && playerarray.includes(1) && playerarray.includes(2))  
+        ||
+        (playerarray.includes(0) && playerarray.includes(3) && playerarray.includes(6) 
+        ||
+        (playerarray.includes(1) && playerarray.includes(4) && playerarray.includes(7)) 
+        ||
+        (playerarray.includes(2) && playerarray.includes(5) && playerarray.includes(8)) 
+        ||
+        (playerarray.includes(3) && playerarray.includes(4) && playerarray.includes(5)))
+    )
 
-function isGameOver(): boolean {
-    // TODO: Implement this function using the global `gameState` variable
-    //       to figure out if the game is over or not.
-
-    // HINT: The game is over if either of these are true.
-    // 1. Rows, Columns, or Diagonals are all one player
-    // 2. The board is full (tie)
-    //
-    if (xarry[0] == 0 && xarry[1] == 1 && xarry[2] == 2)
     {
-        whowin = " X won " ;
         return true;
 
-        
     }
     else 
-    return false;
-    
+    {
+        return false;
+    }
+}
 
 
-  //  return false;
+function isGameOver(): boolean 
+{
+            if (xofuntion(xarry) || xofuntion(oarry))
+            {
+                return true;
+            }
+   
+       else {
+           if(counterx == 9) 
+           alert("nobody win");
+       }
+           return false;
+
 }
 
 function endGame(): void {
     // TODO: Inform the players the game is over and who won. 
     //       Bonus points if you restart for the next game! 
    
-    initializeGame();
-    alert(whowin);
+    //initializeGame();
+    console.log("x should display as won in alert message");
+    setTimeout(() => {
+        alert("the winner is  " + whowin);
+        initializeGame();  
+    }, 0);
+    
 
 }
 
