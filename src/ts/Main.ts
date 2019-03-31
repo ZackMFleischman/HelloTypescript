@@ -23,19 +23,75 @@ import { ENGINE_METHOD_PKEY_ASN1_METHS } from "constants";
 const x: string = "x";
 const o: string = "o";
 const _: string = " ";
-let counterx = 0;
-let xarry: number[] = [];
-let oarry: number[] = [];
-let whowin : string = "" ; 
 
 // Declare GameState data structure
 interface GameState {
-    grid2D: string[][];
-    nextPlayersTurn: string; // "x" or "o"
+    counterx: number;
+    xarry: number[];
+    oarry: number[];
+}
+
+interface OtherInterface {
+    foo: string;
+    bar: Number;
+}
+
+interface HigherLevelGameState {
+    currentGameState: GameState;
+    pastGameStates: GameState[];
+}
+
+let higherLevelGameState: HigherLevelGameState = {
+    currentGameState: {
+        counterx: 1,
+        xarry: [1],
+        oarry: []
+    },
+    pastGameStates: [
+        {
+            counterx: 0,
+            xarry: [],
+            oarry: []
+        }
+    ]
+};
+
+
+let javascriptPOJO = {
+    counterx: 0,
+    xarry: [],
+    oarry: [],
+
+    foo: "randomString",
+    bar: 0
+};
+
+const myGameState: GameState = javascriptPOJO;
+console.log(myGameState.counterx);
+
+const otherInterface: OtherInterface = javascriptPOJO;
+console.log(otherInterface.foo);
+
+type GameStateAndOtherInterface = GameState & OtherInterface;
+const bothGameStateAnOtherInterface: GameStateAndOtherInterface = javascriptPOJO;
+console.log(bothGameStateAnOtherInterface.foo);
+
+const eitherGameStateOrOtherInterface: GameState | OtherInterface = javascriptPOJO;
+if (isGameStateObject(eitherGameStateOrOtherInterface)) {
+    console.log(eitherGameStateOrOtherInterface.counterx);
+} else {
+    console.log(eitherGameStateOrOtherInterface.bar);
+}
+
+
+// User defined type-guard
+function isGameStateObject(obj: GameState | OtherInterface): obj is GameState {
+    return true;
 }
 
 // Global variable representing the current GameState.
 let gameState: GameState;
+
 
 // Store all the TicTacToe cells (which are HTML Divs) in a global array.
 let ticTacToeCells: HTMLDivElement[];
@@ -53,22 +109,14 @@ let label: HTMLDivElement = document.getElementById("label")! as HTMLDivElement;
 function initializeGame() {
     gameState = getInitialGameState();
     initializeGameVisuals();
-    xarry = [];
-    oarry = []; 
-    counterx = 0;
 }
 
 function getInitialGameState(): GameState {
-    let grid2D: string[][] = [
-        [_, _, _],
-        [_, _, _],
-        [_, _, _]
-    ];
-
     return {
-        nextPlayersTurn: x,
-        grid2D: grid2D
-    } as GameState;
+        xarry: [],
+        oarry: [],
+        counterx: 0
+    };
 }
 
 function initializeGameVisuals() {
@@ -97,35 +145,30 @@ function playerMoved(cellNumber: number) {
     updateGameStateWithPlayerMove(cellNumber);
     updateGameVisuals();
 
-   // ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
+    // ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
     //counterx ++;
- 
 
-   if ( counterx % 2 == 0 )    {
-    ticTacToeCells[cellNumber].innerText = x;
-    xarry.push(cellNumber);
-         counterx ++;
-         whowin = x;
+
+    if (gameState.counterx % 2 == 0) {
+        ticTacToeCells[cellNumber].innerText = x;
+
+        // How do we change this line to use the GameState object?
+        gameState.xarry.push(cellNumber);
+
+        gameState.counterx++;
     }
-    else
-    {
-        ticTacToeCells[cellNumber].innerText = o; 
-        oarry.push(cellNumber);
-        counterx ++;
-        whowin =o;
-       
+    else {
+        ticTacToeCells[cellNumber].innerText = o;
+        gameState.oarry.push(cellNumber);
+        gameState.counterx++;
     }
 
     // [Step 2c]
-    if (isGameOver())
-
-    
-    {
+    if (isGameOver()) {
         endGame();
     }
 
-    else 
-    {
+    else {
         console.log("no one win try again");
     }
 }
@@ -143,67 +186,76 @@ function updateGameVisuals() {
     //       Hint: use `innerText` on a div.
 }
 
-function xofuntion(playerarray : number [] ): boolean {
+function xofuntion(playerarray: number[]): boolean {
     if (
-       
-        (playerarray.includes(0) && playerarray.includes(1) && playerarray.includes(2))  
-        ||
-        (playerarray.includes(0) && playerarray.includes(3) && playerarray.includes(6) 
-        ||
-        (playerarray.includes(1) && playerarray.includes(4) && playerarray.includes(7)) 
-        ||
-        (playerarray.includes(2) && playerarray.includes(5) && playerarray.includes(8)) 
-        ||
-        (playerarray.includes(3) && playerarray.includes(4) && playerarray.includes(5))
-        ||
-        (playerarray.includes(6) && playerarray.includes(7) && playerarray.includes(8))
-        ||
-        (playerarray.includes(0) && playerarray.includes(4) && playerarray.includes(8))
-        ||
-        (playerarray.includes(2) && playerarray.includes(4) && playerarray.includes(6)))
-         
-    )
 
-    {
+        (playerarray.includes(0) && playerarray.includes(1) && playerarray.includes(2))
+        ||
+        (playerarray.includes(0) && playerarray.includes(3) && playerarray.includes(6)
+            ||
+            (playerarray.includes(1) && playerarray.includes(4) && playerarray.includes(7))
+            ||
+            (playerarray.includes(2) && playerarray.includes(5) && playerarray.includes(8))
+            ||
+            (playerarray.includes(3) && playerarray.includes(4) && playerarray.includes(5))
+            ||
+            (playerarray.includes(6) && playerarray.includes(7) && playerarray.includes(8))
+            ||
+            (playerarray.includes(0) && playerarray.includes(4) && playerarray.includes(8))
+            ||
+            (playerarray.includes(2) && playerarray.includes(4) && playerarray.includes(6)))
+
+    ) {
         return true;
-
     }
-    else 
-    {
+    else {
         return false;
     }
 }
 
 
-function isGameOver(): boolean 
-{
-            if (xofuntion(xarry) || xofuntion(oarry))
-            {
-                return true;
-            }
-   
-       else {
-           if(counterx == 9) 
-           setTimeout(() => {
-            alert("nobody win  ");  
-            initializeGame();
-        }, 0);
+function isGameOver(): boolean {
+    if (xofuntion(gameState.xarry) || xofuntion(gameState.oarry)) {
+        return true;
+    } else {
+        if (isGameATie()) {
+            alertUserOfWinnerAndRestart("nobody wins");
+        }
+    }
 
-       }
-           return false;
+    return false;
+}
 
+function isGameATie(): boolean {
+    return gameState.counterx == 9; // There's 9 spots, and they have all been taken up.
+}
+
+function alertUserOfWinnerAndRestart(alertMessage: string): void {
+    setTimeout(() => {
+        alert(alertMessage);
+        initializeGame();
+    }, 0);
+}
+
+function getWinner(): string {
+    // Ternary Statement: Basically a shorthand "if/else" clause
+    return (gameState.counterx % 2 == 0) ? o : x;
 }
 
 function endGame(): void {
     // TODO: Inform the players the game is over and who won. 
     //       Bonus points if you restart for the next game! 
 
-    setTimeout(() => {
-        alert("the winner is  " + whowin);
-        initializeGame();  
-    }, 0);
-    
+    let whowin: string = getWinner();
 
+    // Declarative Programming
+    alertUserOfWinnerAndRestart("the winner is  " + whowin);
+
+    // Procedural Programming
+    // setTimeout(() => {
+    //     alert("the winner is  " + whowin);
+    //     initializeGame();
+    // }, 0);
 }
 
 initializeGame();
