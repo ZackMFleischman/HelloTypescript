@@ -103,18 +103,14 @@ function playerMoved(cellNumber: number) {
 
    if ( counterx % 2 == 0 )    {
     ticTacToeCells[cellNumber].innerText = x;
-    console.log(" we added X");
     xarry.push(cellNumber);
-    console.log("we added X to the Xarry at index is " + xarry );
          counterx ++;
          whowin = x;
     }
     else
     {
         ticTacToeCells[cellNumber].innerText = o; 
-        console.log(" we added o");
         oarry.push(cellNumber);
-    console.log("we added O to the Xarry at index is " + oarry );
         counterx ++;
         whowin =o;
        
@@ -125,8 +121,6 @@ function playerMoved(cellNumber: number) {
 
     
     {
-
-    console.log("we are in the game over check");
         endGame();
     }
 
@@ -160,7 +154,14 @@ function xofuntion(playerarray : number [] ): boolean {
         ||
         (playerarray.includes(2) && playerarray.includes(5) && playerarray.includes(8)) 
         ||
-        (playerarray.includes(3) && playerarray.includes(4) && playerarray.includes(5)))
+        (playerarray.includes(3) && playerarray.includes(4) && playerarray.includes(5))
+        ||
+        (playerarray.includes(6) && playerarray.includes(7) && playerarray.includes(8))
+        ||
+        (playerarray.includes(0) && playerarray.includes(4) && playerarray.includes(8))
+        ||
+        (playerarray.includes(2) && playerarray.includes(4) && playerarray.includes(6)))
+         
     )
 
     {
@@ -183,7 +184,11 @@ function isGameOver(): boolean
    
        else {
            if(counterx == 9) 
-           alert("nobody win");
+           setTimeout(() => {
+            alert("nobody win  ");  
+            initializeGame();
+        }, 0);
+
        }
            return false;
 
@@ -192,9 +197,7 @@ function isGameOver(): boolean
 function endGame(): void {
     // TODO: Inform the players the game is over and who won. 
     //       Bonus points if you restart for the next game! 
-   
-    //initializeGame();
-    console.log("x should display as won in alert message");
+
     setTimeout(() => {
         alert("the winner is  " + whowin);
         initializeGame();  
@@ -204,3 +207,16 @@ function endGame(): void {
 }
 
 initializeGame();
+
+//Ahmads-MacBook-Air:HelloTypescript ahmadyounis$ git add src/ts/Main.ts
+//Ahmads-MacBook-Air:HelloTypescript ahmadyounis$ git commit -m "this adding the x and o as function instaead of keep repeating the x and o using if statement"
+//[TicTacToe 3508648] this adding the x and o as function instaead of keep repeating the x and o using if statement
+// 1 file changed, 64 insertions(+), 32 deletions(-)
+//Ahmads-MacBook-Air:HelloTypescript ahmadyounis$ git push
+
+
+// 1. when no one is winning then the x or x is not display so i added the setTimeout same as 
+// the alert for win x or o and it's working good now 
+// 2. I complated the x and o raw and culoum for winning 
+// 3. If no one is winning the i restart the game by calling in initializeGame() after the alert
+// 4. 
