@@ -64,6 +64,7 @@ let javascriptPOJO = {
 
     foo: "randomString",
     bar: 0
+
 };
 
 const myGameState: GameState = javascriptPOJO;
@@ -139,30 +140,48 @@ function initializeGameVisuals() {
     }
 }
 
+
 // [Step 2]
 // This gets called when the player clicks on a cell.
 function playerMoved(cellNumber: number) {
-    updateGameStateWithPlayerMove(cellNumber);
-    updateGameVisuals();
+   
+
+    //gameState.counterx = gameState.counterx-1;
+    
+    
+   // updateGameStateWithPlayerMove(cellNumber);
+   // updateGameVisuals();
 
     // ticTacToeCells[cellNumber].innerText = (counterx % 2 == 0) ? x : o ;
     //counterx ++;
 
-
-    if (gameState.counterx % 2 == 0) {
+if (ticTacToeCells[cellNumber].innerText == "")
+{
+    if (gameState.counterx % 2 == 0){
+        
+        
+    
         ticTacToeCells[cellNumber].innerText = x;
 
         // How do we change this line to use the GameState object?
         gameState.xarry.push(cellNumber);
+        console.log("the xraay is  " +gameState.xarry);
 
+       
         gameState.counterx++;
+        
     }
-    else {
+       
+        else {
         ticTacToeCells[cellNumber].innerText = o;
         gameState.oarry.push(cellNumber);
         gameState.counterx++;
     }
-
+    
+}
+else {
+    alert("you can't ");
+}
     // [Step 2c]
     if (isGameOver()) {
         endGame();
@@ -227,7 +246,8 @@ function isGameOver(): boolean {
 }
 
 function isGameATie(): boolean {
-    return gameState.counterx == 9; // There's 9 spots, and they have all been taken up.
+    return gameState.oarry.length + gameState.xarry.length == 9;
+  //return gameState.counterx == 9; // There's 9 spots, and they have all been taken up.
 }
 
 function alertUserOfWinnerAndRestart(alertMessage: string): void {
@@ -271,4 +291,27 @@ initializeGame();
 // the alert for win x or o and it's working good now 
 // 2. I complated the x and o raw and culoum for winning 
 // 3. If no one is winning the i restart the game by calling in initializeGame() after the alert
-// 4. 
+
+
+
+
+
+                ///////////////////////////////////////////////////////
+                //////////////// How to make computer play ///////////////////////////
+                ///////////////////////////////////////////////////////
+
+
+
+// X will start  
+// O is the computer  
+// O will check each filed to see if its fill or no 
+// Use For loop to save all the empty fileds to Arry 
+// now we need to think where to put O in which filed that the best to make it win 
+// I am not sure how to make the step above 
+// once we know which one is the best then we need to add O to the filed 
+// Make the Arry + and also the counter + for O 
+// then we need to make X turn 
+
+
+// the rest will be the same to make the counter + 
+// after each move we need to check if the game is done or no by win or tie 
